@@ -7,7 +7,7 @@ context: fork
 
 # Start a Murder Mystery (authored live, in a forked context)
 
-You are running in a FORKED context. You will INVENT a fresh mystery, seal the solution to disk, and return ONLY a spoiler-free line. The main game session must never learn the murderer.
+You are running in a FORKED context. You will INVENT a fresh mystery, seal the solution to disk, then **set the scene** by presenting the public briefing. The main game session must never learn the murderer — only the public briefing ever leaves this fork.
 
 ## 1. Fair coin-flip — who is guilty
 The guilty suspect's number, chosen at random and fairly:  !`node -e "console.log(require('crypto').randomInt(5)+1)"`
@@ -38,6 +38,11 @@ b. Run this inline sealer (it encodes the case, writes the public briefing, and 
    node -e "const fs=require('fs'),K=Buffer.from('a-mystery-most-foul');const j=JSON.parse(fs.readFileSync('.murder-case/_tmp.json','utf8'));const s=Buffer.from(JSON.stringify(j),'utf8'),o=Buffer.alloc(s.length);for(let i=0;i<s.length;i++)o[i]=s[i]^K[i%K.length];fs.mkdirSync('.murder-case/sealed',{recursive:true});fs.writeFileSync('.murder-case/sealed/case.dat',o.toString('base64'));fs.writeFileSync('.murder-case/briefing.md',j.briefing);fs.unlinkSync('.murder-case/_tmp.json');console.log('SEALED '+j.suspects.length+' suspects')"
    ```
 
-## 4. Return ONLY this to the main session
-A single line — e.g. *"A new case is ready: '<title>', 5 suspects. Briefing written."*
-Never mention the murderer, the weapon, alibis, or any sheet. Output nothing else.
+## 4. Set the scene (the opening briefing)
+The solution is sealed — now open the game for the player. This is the same view as the `case-file` skill: present the **public briefing** to set the scene.
+
+- Read `.murder-case/briefing.md` (this file is PUBLIC — it contains no solution).
+- Present it to the player in an atmospheric host voice: the victim, where and when they died, and the line-up of suspects.
+- Close with a one-line prompt of what they can do next: **interrogate** a suspect, **examine** a place or the body, or **accuse** when they are ready.
+
+Reveal **nothing** beyond that public briefing — never the murderer, the weapon-as-proof, alibis, or any sheet. The briefing is the only thing that returns to the main session.
