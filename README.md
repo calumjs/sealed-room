@@ -6,13 +6,7 @@ A storm has sealed the roads. Someone in the house is a murderer. You question t
 
 ## 🎬 Watch the showcase
 
-<p align="center">
-  <a href="https://github.com/calumjs/sealed-room/releases/download/v0.1.0/showcase.mp4">
-    <img src="docs/poster.jpg" alt="sealed-room — watch the showcase reel" width="100%">
-  </a>
-</p>
-
-<p align="center"><sub>▶ <b><a href="https://github.com/calumjs/sealed-room/releases/download/v0.1.0/showcase.mp4">Click to watch the ~2-minute reel</a></b> — a real playthrough, refereed by an AI that never knew who did it. Also on the <a href="https://github.com/calumjs/sealed-room/releases/tag/v0.1.0">release page</a>.</sub></p>
+https://github.com/user-attachments/assets/1316a7a8-8c41-4062-80b9-256bd6204b18
 
 ---
 
