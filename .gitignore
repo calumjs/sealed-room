@@ -1,0 +1,13 @@
+# Game state — created in the player's working directory at play time
+.murder-case/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
