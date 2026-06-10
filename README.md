@@ -14,7 +14,7 @@ https://github.com/user-attachments/assets/1316a7a8-8c41-4062-80b9-256bd6204b18
 
 This is the whole point, and it's just two ideas borrowed from Claude Code's own mechanics:
 
-1. **Scripts run; only their *output* enters context.** When the case is dealt, a script invents the cast, fairly picks the murderer, and writes the solution to disk **encoded**. The main session only ever sees a safe one-line "case ready" — never the answer.
+1. **Scripts run; only their *output* enters context.** When the case is dealt, `start-case` (in a forked context) invents the cast, fairly picks the murderer, and writes the solution to disk **encoded**. The main session only ever sees the **public briefing** — the victim, the room, the suspect line-up — never the murderer or any sheet.
 2. **Interrogations run in a *forked* context.** When you question a suspect, a throwaway sub-context decodes *only that suspect's* secret sheet, plays them (lying if their sheet says to), and returns **only the spoken dialogue.** The killer's identity never crosses back into the main game.
 
 No single interrogation contains "whodunit" anywhere — not even inside the fork. A suspect's sheet says *"deny you were in the library"*, never *"you are the murderer."* The answer only exists as the **sum of contradictions** you uncover. You win by out-reasoning everyone at the table, including the AI.
@@ -60,7 +60,7 @@ Tip: try `start a murder mystery`, then ask your assistant to *"use a workflow t
 
 | Skill | What it does |
 |---|---|
-| `start-case` | Invents the cast & crime in a **forked context**, fairly coin-flips the murderer, and seals the solution to disk. Returns only a spoiler-free summary. |
+| `start-case` | Invents the cast & crime in a **forked context**, fairly coin-flips the murderer, seals the solution to disk, then presents only the **public briefing** — never the murderer or a sheet. (Also checks for Node.js and offers to install it.) |
 | `interrogate` | Forks, decodes **only the named suspect's** sheet, role-plays them (lying per their sheet), and returns only dialogue. |
 | `examine` | Surfaces the clue for a room / the body / an object. The solution stays inside the script. |
 | `accuse` | Unseals the solution, checks your guess, and reveals the full truth. |
@@ -76,7 +76,7 @@ All five are **fully inline** — the logic lives in the `SKILL.md` files as `!`
 start-case  ──(forked)──►  invent cast + fair coin-flip for culprit
                            write each suspect a sheet (truths AND lies)
                            seal everything to .murder-case/sealed/case.dat (encoded)
-                           ► returns ONLY "case ready"  ◄ main session stays blind
+                           ► presents only the PUBLIC briefing  ◄ murderer never leaves the fork
 
 interrogate ──(forked)──►  decode ONE suspect's sheet  ►  role-play  ►  returns ONLY dialogue
 examine     ───────────►   decode + print ONE clue     ►  solution never leaves the process
