@@ -2,13 +2,12 @@
   "name": "sealed-room",
   "owner": { "name": "Calum Simpson", "url": "https://github.com/calumjs" },
   "metadata": {
-    "description": "A murder-mystery game for Claude Code, where the host can't see the answer.",
-    "pluginRoot": "./plugins"
+    "description": "A murder-mystery game for Claude Code, where the host can't see the answer."
   },
   "plugins": [
     {
       "name": "sealed-room",
-      "source": "./sealed-room",
+      "source": "./plugins/sealed-room",
       "description": "Deal a whodunit, interrogate lying suspects, examine clues, and accuse — refereed by an AI that genuinely doesn't know who did it."
     }
   ]
