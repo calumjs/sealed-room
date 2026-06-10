@@ -4,6 +4,14 @@
 
 A storm has sealed the roads. Someone in the house is a murderer. You question the suspects, search the rooms, and name your culprit. The twist: the assistant hosting the game **doesn't know the answer either.** It was generated, sealed to disk, and is only ever revealed through scripted output — so your AI detective-partner can react to the mystery alongside you without being able to spoil it.
 
+## 🎬 Watch the showcase
+
+<p align="center">
+  <video src="https://raw.githubusercontent.com/calumjs/sealed-room/main/docs/showcase.mp4" poster="https://raw.githubusercontent.com/calumjs/sealed-room/main/docs/poster.jpg" controls muted width="100%"></video>
+</p>
+
+<p align="center"><sub>▶ Player not showing? <a href="https://github.com/calumjs/sealed-room/raw/main/docs/showcase.mp4">Watch the reel here</a> — a real playthrough, refereed by an AI that never knew the answer.</sub></p>
+
 ---
 
 ## How it stays unspoilable
