@@ -57,10 +57,12 @@ b. Run this inline sealer (it encodes the case, writes the public briefing, and 
    ```
 
 ## 4. Set the scene (the opening briefing)
-The solution is sealed — now open the game for the player. This is the same view as the `case-file` skill: present the **public briefing** to set the scene.
+The solution is sealed — now open the game for the player.
 
-- Read `.murder-case/briefing.md` (this file is PUBLIC — it contains no solution).
-- Present it to the player in an atmospheric host voice: the victim, where and when they died, and the line-up of suspects.
-- Close with a one-line prompt of what they can do next: **interrogate** a suspect, **examine** a place or the body, or **accuse** when they are ready.
+Returning detective's record:  !`node -e "const fs=require('fs');const f='.murder-case/highscores.json';let arr=[];try{arr=JSON.parse(fs.readFileSync(f,'utf8'))}catch(e){}if(!arr.length){console.log('NONE');process.exit(0)}const s=arr.filter(r=>r.result==='solved');const best=s.length?Math.min.apply(null,s.map(r=>r.score)):null;console.log('record :: '+arr.length+' game(s), '+s.length+' solved'+(best!=null?', best score '+best:'')+' :: last case: '+arr[arr.length-1].mystery)"`
 
-Reveal **nothing** beyond that public briefing — never the murderer, the weapon-as-proof, alibis, or any sheet. The briefing is the only thing that returns to the main session.
+- If that line is anything other than `NONE`, **open by welcoming the returning detective with their record** — games played, how many solved, best score, and their last case — a quick "previously…" before the new mystery. Mention they can run `scores` for the full leaderboard.
+- Then present the **public briefing**: read `.murder-case/briefing.md` (PUBLIC — it contains no solution) and set the scene in an atmospheric host voice — the victim, where and when they died, and the suspect line-up.
+- Close with what they can do next: **interrogate** a suspect, **examine** a place or the body, or **accuse** when they are ready.
+
+Reveal **nothing** beyond the public briefing — never the murderer, the weapon-as-proof, alibis, or any sheet. (The high-scores file is public and safe to read; the sealed case is not.)
