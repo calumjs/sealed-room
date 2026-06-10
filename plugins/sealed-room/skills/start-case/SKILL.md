@@ -53,7 +53,7 @@ a. Use the Write tool to save the full case as plaintext JSON at `.murder-case/_
    ```
 b. Run this inline sealer (it encodes the case, writes the public briefing, and deletes the plaintext):
    ```
-   node -e "const fs=require('fs'),K=Buffer.from('a-mystery-most-foul');const j=JSON.parse(fs.readFileSync('.murder-case/_tmp.json','utf8'));const s=Buffer.from(JSON.stringify(j),'utf8'),o=Buffer.alloc(s.length);for(let i=0;i<s.length;i++)o[i]=s[i]^K[i%K.length];fs.mkdirSync('.murder-case/sealed',{recursive:true});fs.writeFileSync('.murder-case/sealed/case.dat',o.toString('base64'));fs.writeFileSync('.murder-case/briefing.md',j.briefing);fs.unlinkSync('.murder-case/_tmp.json');console.log('SEALED '+j.suspects.length+' suspects')"
+   node -e "const fs=require('fs'),K=Buffer.from('a-mystery-most-foul');const j=JSON.parse(fs.readFileSync('.murder-case/_tmp.json','utf8'));const s=Buffer.from(JSON.stringify(j),'utf8'),o=Buffer.alloc(s.length);for(let i=0;i<s.length;i++)o[i]=s[i]^K[i%K.length];fs.mkdirSync('.murder-case/sealed',{recursive:true});fs.writeFileSync('.murder-case/sealed/case.dat',o.toString('base64'));fs.writeFileSync('.murder-case/briefing.md',j.briefing);fs.unlinkSync('.murder-case/_tmp.json');fs.writeFileSync('.murder-case/actions','0');console.log('SEALED '+j.suspects.length+' suspects')"
    ```
 
 ## 4. Set the scene (the opening briefing)

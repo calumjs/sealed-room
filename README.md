@@ -59,10 +59,11 @@ Then run `claude` in that folder and play. The plugin only loads here, and the g
 
 ```text
 start a murder mystery        # deal a fresh case (cast, crime, sealed solution)
-case file                     # re-read the public briefing & suspect list
-interrogate Mrs Vale          # question a suspect — press them and watch for tells
-examine the library           # search a room, the body, or an object for clues
-accuse Mrs Vale               # name the killer — you only get to be sure once
+case file                     # re-read the public briefing & suspect list   (free)
+interrogate Mrs Vale          # question a suspect — costs 1 action; watch for tells
+examine the library           # search a room / body / object for clues — costs 1 action
+accuse Mrs Vale               # name the killer — reveals your score and logs the game
+scores                        # show the high-scores leaderboard             (free)
 ```
 
 A typical round:
@@ -110,15 +111,28 @@ you ▸ accuse Felix Crane
 
 ---
 
+## 🏆 Score & high scores
+
+It's golf — **fewer moves is better.** Every `interrogate` and `examine` is **one action**; `case file` and `scores` are free. When you `accuse`, your **score** is how many actions it took to get there:
+
+- **0–3** → *Master Detective*
+- **4–6** → *Sharp*
+- **7+** → *Thorough*
+
+Each game is logged to `.murder-case/highscores.json` — date, mystery, score, result, and a one-line note on how you cracked it — and **`scores`** prints the leaderboard (solved games first, lowest score on top). Deleting `.murder-case/` wipes your cases **and** your scores.
+
+---
+
 ## The skills
 
 | Skill | What it does |
 |---|---|
 | `start-case` | Invents the cast & crime in a **forked context**, fairly coin-flips the murderer, seals the solution to disk, then presents only the **public briefing** — never the murderer or a sheet. (Also checks for Node.js and offers to install it.) |
-| `interrogate` | Forks, decodes **only the named suspect's** sheet, role-plays them (lying per their sheet), and returns only dialogue. |
-| `examine` | Surfaces the clue for a room / the body / an object. The solution stays inside the script. |
-| `accuse` | Unseals the solution, checks your guess, and reveals the full truth. |
-| `case-file` | Re-shows the public briefing. Never touches the sealed files. |
+| `interrogate` | Forks, decodes **only the named suspect's** sheet, role-plays them (lying per their sheet), and returns only dialogue. **(+1 action)** |
+| `examine` | Surfaces the clue for a room / the body / an object. The solution stays inside the script. **(+1 action)** |
+| `accuse` | Unseals the solution, checks your guess, reveals the truth, **reports your score, and logs the game** to the high-scores table. |
+| `case-file` | Re-shows the public briefing. Never touches the sealed files. *(free)* |
+| `scores` | Prints the high-scores leaderboard from `.murder-case/highscores.json`. *(free)* |
 
 All five are **fully inline** — the logic lives in the `SKILL.md` files as `!`node -e …`` injections, with no bundled scripts. Game state is written to a `.murder-case/` folder in your current working directory (safe to delete; add it to `.gitignore`).
 
