@@ -42,6 +42,19 @@ Requires [Claude Code](https://claude.com/claude-code) and **Node.js** v18+ (use
 /plugin install sealed-room@sealed-room
 ```
 
+### Or keep it to one folder (no global install)
+
+Don't want sealed-room loaded in every project? Make a dedicated folder and install it **local to just that folder** — from your terminal:
+
+```bash
+mkdir my-mysteries && cd my-mysteries
+
+claude plugin marketplace add calumjs/sealed-room
+claude plugin install sealed-room@sealed-room --scope local
+```
+
+Then run `claude` in that folder and play. The plugin only loads here, and the game's `.murder-case/` state stays tidily in this one directory (delete it any time to wipe your cases).
+
 ## Play
 
 ```text
