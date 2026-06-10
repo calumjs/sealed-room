@@ -9,6 +9,24 @@ context: fork
 
 You are running in a FORKED context. You will INVENT a fresh mystery, seal the solution to disk, then **set the scene** by presenting the public briefing. The main game session must never learn the murderer — only the public briefing ever leaves this fork.
 
+## 0. Make sure Node.js is available (do this FIRST)
+sealed-room runs on Node.js. Before generating anything, check it:
+
+```
+node --version
+```
+
+- If it prints a version (v18+ ideally), continue to step 1.
+- If `node` is **not found**, do NOT generate a case. Tell the player Node.js is required and **offer to install it**, then install it — *only with their go-ahead* — using the command that fits their machine:
+  - **Windows (winget):** `winget install -e --id OpenJS.NodeJS.LTS`
+  - **macOS (Homebrew):** `brew install node`
+  - **Debian / Ubuntu:** `sudo apt-get update && sudo apt-get install -y nodejs`
+  - **Fedora / RHEL:** `sudo dnf install -y nodejs`
+  - **No package manager / unsure:** point them to <https://nodejs.org> (download the LTS installer).
+- After installing, `node` may not be on `PATH` until they open a new terminal or restart Claude Code. Ask them to do that, then run **start a murder mystery** again.
+
+Do not proceed past this step until `node --version` succeeds.
+
 ## 1. Fair coin-flip — who is guilty
 The guilty suspect's number, chosen at random and fairly:  !`node -e "console.log(require('crypto').randomInt(5)+1)"`
 

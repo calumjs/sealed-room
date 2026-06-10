@@ -25,7 +25,7 @@ No single interrogation contains "whodunit" anywhere — not even inside the for
 
 ## Install
 
-Requires [Claude Code](https://claude.com/claude-code) and **Node.js** (used for the sealed generation and lookups).
+Requires [Claude Code](https://claude.com/claude-code) and **Node.js** v18+ (used for the sealed generation and lookups). Don't have Node? `start-case` checks for it and will **offer to install it** for your OS before dealing the first case.
 
 ```bash
 # add this repo as a plugin marketplace
