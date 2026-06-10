@@ -1,8 +1,15 @@
 # 🔍 sealed-room
 
+<p align="center">
+  <a href="https://github.com/calumjs/sealed-room/releases"><img src="https://img.shields.io/github/v/release/calumjs/sealed-room?label=release&color=8b0000" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/Claude%20Code-plugin-d97757" alt="Claude Code plugin">
+  <img src="https://img.shields.io/badge/Node.js-%E2%89%A5%2018-339933?logo=node.js&logoColor=white" alt="Node.js 18+">
+</p>
+
 **A murder-mystery game for [Claude Code](https://claude.com/claude-code) — refereed by an AI that genuinely cannot see who did it.**
 
-A storm has sealed the roads. Someone in the house is a murderer. You question the suspects, search the rooms, and name your culprit. The twist: the assistant hosting the game **doesn't know the answer either.** It was generated, sealed to disk, and is only ever revealed through scripted output — so your AI detective-partner can react to the mystery alongside you without being able to spoil it.
+A storm has sealed the roads. Someone in the house is a murderer. You question the suspects, search the rooms, and name your culprit. The twist: the assistant hosting the game **doesn't know the answer either.** It was generated, sealed to disk, and is only ever revealed through scripted output — so your AI detective-partner can react to the mystery alongside you without being able to spoil it. Every case is invented fresh — a new victim, a new cast, a new culprit.
 
 ## 🎬 Watch the showcase
 
@@ -52,7 +59,41 @@ A typical round:
 3. **Catch the contradiction.** One honest witness can place the killer where they swore they never went. Find the alibi that can't survive it.
 4. **Accuse.** `accuse <name>` unseals the truth and delivers the verdict.
 
-Tip: try `start a murder mystery`, then ask your assistant to *"use a workflow to ask every suspect at once who they think did it"* — five suspects, questioned in parallel, each blind to the others.
+---
+
+## 🕯️ A sample case
+
+```text
+you ▸ start a murder mystery
+
+      THE GREYWATER CONSERVATORY AFFAIR
+      Edwin Marsh, a dealer in rare maps, is found dead in the
+      conservatory at 9:40 PM, a storm raging outside.
+      Five remain in the house — and one of them is lying.
+
+you ▸ examine the conservatory
+
+      An overturned orchid bench. A heavy brass watering can by the
+      body — the weapon. An empty hook by the door, labelled GLOVES.
+      The gloves are gone.
+
+you ▸ interrogate Felix Crane     (the groundskeeper)
+
+      "I was down at the boathouse from half past nine. I'd no
+       cause to go near the conservatory."
+
+you ▸ interrogate Mrs Tilney      (the housekeeper)
+
+      "Ask young Crane how a gardener affords new boots all of a
+       sudden — and what became of the gloves on that hook."
+
+you ▸ accuse Felix Crane
+
+      ✅ CORRECT — the murderer was Felix Crane.
+         The AI host never knew, until you said it.
+```
+
+> **In one move:** ask your assistant to *"use a workflow to interrogate every suspect at once"* — all five questioned **in parallel**, each in its own forked context, blind to the others. (That's the screen the showcase opens on.)
 
 ---
 
@@ -91,4 +132,6 @@ The "sealed room" is both the genre *and* the architecture: the answer is locked
 
 MIT © Calum Simpson. See [LICENSE](LICENSE).
 
-*Built with Claude Code.*
+---
+
+*Built with Claude Code — and itself a small demo of the mechanics it's built on: progressive disclosure, forked contexts, and the script-output boundary, turned into a game you can't be spoiled by.*
