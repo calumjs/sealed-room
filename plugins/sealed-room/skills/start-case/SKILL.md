@@ -49,7 +49,7 @@ a. Use the Write tool to save the full case as plaintext JSON at `.murder-case/_
      "suspects": [ { "name": "", "role": "" } ],
      "sheets": { "<name>": { "identity": "", "demeanor": "", "alibi_claim": "", "knows": [], "conceal": [], "tell": "", "pressure": "" } },
      "clues": { "<place>": "", "body": "" },
-     "briefing": "<PUBLIC markdown: victim + room + time, the 5 suspect names & roles, and a short how-to-play. NEVER reveal the murderer, the weapon-as-proof, or any sheet.>" }
+     "briefing": "<PUBLIC markdown: victim + room + time; the 5 suspects, each with their name, role, AND their stated alibi (the one-line `alibi_claim` — where they say they were when the victim died); and a short how-to-play. The stated alibis are public and MUST appear here so the player starts with everyone's story on the record. NEVER reveal the murderer, the weapon-as-proof, who the witness is, or any hidden sheet detail (what a suspect knows, conceals, their tell, or how they crack).>" }
    ```
 b. Run this inline sealer (it encodes the case, writes the public briefing, and deletes the plaintext):
    ```
@@ -62,7 +62,7 @@ The solution is sealed — now open the game for the player.
 Returning detective's record:  !`node -e "const fs=require('fs');const f='.murder-case/highscores.json';let arr=[];try{arr=JSON.parse(fs.readFileSync(f,'utf8'))}catch(e){}if(!arr.length){console.log('NONE');process.exit(0)}const s=arr.filter(r=>r.result==='solved');const best=s.length?Math.min.apply(null,s.map(r=>r.score)):null;console.log('record :: '+arr.length+' game(s), '+s.length+' solved'+(best!=null?', best score '+best:'')+' :: last case: '+arr[arr.length-1].mystery)"`
 
 - If that line is anything other than `NONE`, **open by welcoming the returning detective with their record** — games played, how many solved, best score, and their last case — a quick "previously…" before the new mystery. Mention they can run `scores` for the full leaderboard.
-- Then present the **public briefing**: read `.murder-case/briefing.md` (PUBLIC — it contains no solution) and set the scene in an atmospheric host voice — the victim, where and when they died, and the suspect line-up.
+- Then present the **public briefing**: read `.murder-case/briefing.md` (PUBLIC — it contains no solution) and set the scene in an atmospheric host voice — the victim, where and when they died, and the suspect line-up. For each suspect, give their name, role, **and their stated alibi** — every suspect's story belongs on the record from the outset, so the player can start playing the alibis against each other (and against `examine` findings) instead of having to interrogate everyone just to learn where they each *claim* to have been.
 - Close with what they can do next: **interrogate** a suspect, **examine** a place or the body, or **accuse** when they are ready.
 
-Reveal **nothing** beyond the public briefing — never the murderer, the weapon-as-proof, alibis, or any sheet. (The high-scores file is public and safe to read; the sealed case is not.)
+Reveal **nothing** beyond the public briefing — never the murderer, the weapon-as-proof, who the witness is, or any hidden sheet detail (what a suspect *knows*, what they conceal, their tell, or how they crack under pressure). The five **stated alibis** are public and belong in the briefing; the truth that breaks one of them is not. (The high-scores file is public and safe to read; the sealed case is not.)

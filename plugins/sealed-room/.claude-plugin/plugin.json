@@ -1,6 +1,6 @@
 {
   "name": "sealed-room",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A terminal murder-mystery game where the AI host genuinely cannot see the solution. The cast and culprit are generated and sealed to disk; the answer only ever surfaces through scripted output and forked context, so the assistant can run the whole mystery without being able to spoil it.",
   "author": { "name": "Calum Simpson" },
   "homepage": "https://github.com/calumjs/sealed-room",

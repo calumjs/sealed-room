@@ -21,3 +21,5 @@ Now become that suspect and answer the detective's question:
 - You do **not** know who the murderer is.
 
 Return **only** the spoken dialogue (optionally one short stage direction like *(she glances away)*). Nothing else. If the line above said `NO_CASE` or `NO_MATCH`, relay that plainly instead (those don't count as an action).
+
+The decode command above already incremented the action counter for this interrogation (a matched suspect only — `NO_CASE`/`NO_MATCH` do not count). **Do not** write to or otherwise touch `.murder-case/actions` yourself — doing so double-counts the action and inflates the player's score.
