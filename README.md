@@ -21,7 +21,7 @@ https://github.com/user-attachments/assets/1316a7a8-8c41-4062-80b9-256bd6204b18
 
 This is the whole point, and it's just two ideas borrowed from Claude Code's own mechanics:
 
-1. **Scripts run; only their *output* enters context.** When the case is dealt, `start-case` (in a forked context) invents the cast, fairly picks the murderer, and writes the solution to disk **encoded**. The main session only ever sees the **public briefing** — the victim, the room, the suspect line-up — never the murderer or any sheet.
+1. **Scripts run; only their *output* enters context.** When the case is dealt, `start-case` (in a forked context) invents the cast, fairly picks the murderer, and writes the solution to disk **encoded**. The main session only ever sees the **public briefing** — the victim, the room, the suspect line-up and each suspect's stated alibi — never the murderer or any hidden sheet.
 2. **Interrogations run in a *forked* context.** When you question a suspect, a throwaway sub-context decodes *only that suspect's* secret sheet, plays them (lying if their sheet says to), and returns **only the spoken dialogue.** The killer's identity never crosses back into the main game.
 
 No single interrogation contains "whodunit" anywhere — not even inside the fork. A suspect's sheet says *"deny you were in the library"*, never *"you are the murderer."* The answer only exists as the **sum of contradictions** you uncover. You win by out-reasoning everyone at the table, including the AI.
@@ -68,7 +68,7 @@ scores                        # show the high-scores leaderboard             (fr
 
 A typical round:
 
-1. **Deal it.** `start a murder mystery` → you get a briefing: the victim, where and when they died, and five suspects.
+1. **Deal it.** `start a murder mystery` → you get a briefing: the victim, where and when they died, and five suspects — each with the alibi they're telling.
 2. **Investigate.** `examine` the scene for physical clues; `interrogate` suspects about their whereabouts. Innocents have unrelated secrets (red herrings); exactly one person is lying about the crime itself.
 3. **Catch the contradiction.** One honest witness can place the killer where they swore they never went. Find the alibi that can't survive it.
 4. **Accuse.** `accuse <name>` unseals the truth and delivers the verdict.
